@@ -70,7 +70,6 @@ public class Task extends BaseEntity {
     public void setDueDate(LocalDateTime dueDate) {
         this.dueDate = dueDate;
     }
-
     public List<String> getTags() {
         return tags;
     }
