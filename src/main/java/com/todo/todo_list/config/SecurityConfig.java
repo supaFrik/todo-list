@@ -14,13 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-/**
- * Minimal security configuration for local development.
- * - Permits access to '/', '/index.html' and the H2 console
- * - Disables CSRF for the H2 console and allows frames from same origin (needed by H2)
- * - Keeps form login for other endpoints
- * - Provides an in-memory user for easier local testing
- */
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -29,10 +23,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/", "/index.html", "/h2-console/**", "/css/**", "/js/**", "/webjars/**").permitAll()
+                .requestMatchers("/", "/index.html", "/h2-console/**", "/css/**", "/js/**", "/webjars/**", "/api/**").permitAll()
                 .anyRequest().authenticated()
             )
-            .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
+            .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**", "/api/**"))
             .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()))
             .formLogin(withDefaults());
 

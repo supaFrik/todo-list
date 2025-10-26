@@ -85,4 +85,12 @@ public class Task extends BaseEntity {
     public void setStatus(Status status) {
         this.status = status;
     }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }
